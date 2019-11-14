@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  namespace: {{ .Release.Namespace }}
+  name: manager
+  labels:
+    app.kubernetes.io/name: manager
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/version: {{ .Chart.Version }}
+    app.kubernetes.io/part-of: {{ .Chart.Name }}
+    app.kubernetes.io/managed-by: helm
+spec:
+  replicas: {{ .Values.managerServer.replicas }}
+  serviceName: manager
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: manager
+  volumeClaimTemplates:
+    - metadata:
+        name: manager-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: {{ .Values.managerServer.storage.request }}
+        storageClassName: {{ .Values.managerServer.storage.className }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: manager
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/version: {{ .Chart.Version }}
+        app.kubernetes.io/part-of: {{ .Chart.Name }}
+        app.kubernetes.io/managed-by: helm
+    spec:
+      serviceAccountName: manager
+      containers:
+        - name: weed
+          image: {{ .Values.managerServer.image.repository }}:{{ .Values.managerServer.image.tag }}
+          imagePullPolicy: {{ .Values.managerServer.image.pullPolicy }}
+          env:
+            - name: PODNAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+          args:
+            - master
+            - -mdir=/data/
+            - -peers={{ include "manager.servers" . }}
+            - -ip=$(PODNAME).manager
+            - -port=9333
+          ports:
+            - containerPort: 19333
+              name: grpc
+            - containerPort: 9333
+              name: http
+          volumeMounts:
+            - name: manager-data
+              mountPath: /data/
+              readOnly: false

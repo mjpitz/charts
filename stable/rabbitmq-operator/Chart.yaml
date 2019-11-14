@@ -1,0 +1,13 @@
+apiVersion: v1
+name: rabbitmq-operator
+version: 0.1.0
+description: A Helm chart for Kubernetes
+type: application
+keywords:
+  - indeedeng
+  - rabbitmq
+  - operator
+maintainers:
+  - name: Mya Pitzeruse
+    url: http://github.com/mjpitz
+appVersion: 0.0.5

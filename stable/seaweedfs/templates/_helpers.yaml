@@ -1,0 +1,7 @@
+{{- define "manager.servers" -}}
+{{- $ingressPaths := "" -}}
+{{- range $i := until (int .Values.managerServer.replicas) -}}
+{{- $ingressPaths = printf "%smanager-%d.manager:9333," $ingressPaths $i -}}
+{{- end -}}
+{{- trimSuffix "," $ingressPaths -}}
+{{- end -}}

@@ -1,0 +1,18 @@
+image:
+  url: indeedoss/rabbitmq-operator
+  tag: 0.0.5
+  pullPolicy: IfNotPresent
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 256Mi
+  requests:
+    cpu: 500m
+    memory: 256Mi
+
+logging:
+  level: info
+#  additional:
+#    'io.fabric8.kubernetes.client': trace
+#    'com.indeed.operators.rabbitmq': warn

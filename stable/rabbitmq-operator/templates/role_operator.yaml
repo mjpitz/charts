@@ -1,0 +1,78 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: {{ .Release.Namespace }}
+  name: rabbitmq-operator
+  labels:
+    app.kubernetes.io/name: rabbitmq-operator
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/version: {{ .Chart.Version }}
+    app.kubernetes.io/part-of: {{ .Chart.Name }}
+    app.kubernetes.io/managed-by: helm
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - endpoints
+      - pods/exec
+    verbs:
+      - get
+  - apiGroups:
+      - ""
+    resources:
+      - secrets
+      - services
+      - pods
+      - persistentvolumeclaims
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - update
+      - patch
+      - delete
+  - apiGroups:
+      - apps
+    resources:
+      - statefulsets
+    verbs:
+      - create
+      - delete
+      - get
+      - patch
+      - watch
+  - apiGroups:
+      - apps
+    resources:
+      - replicasets
+    verbs:
+      - list
+  - apiGroups:
+      - policy
+    resources:
+      - poddisruptionbudgets
+    verbs:
+      - create
+      - delete
+      - get
+      - patch
+  - apiGroups:
+      - indeed.com
+    resources:
+      - rabbitmqs
+    verbs:
+      - get
+      - watch
+      - patch
+      - list
+  - apiGroups:
+      - indeed.com
+    resources:
+      - rabbitmqnetworkpartitions
+    verbs:
+      - watch
+      - get
+      - delete
+      - list
+      - patch

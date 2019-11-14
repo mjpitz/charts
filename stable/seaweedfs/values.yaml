@@ -1,0 +1,31 @@
+managerServer:
+  replicas: 3
+  image:
+    repository: mjpitz/seaweedfs
+    tag: latest
+    pullPolicy: Always
+  storage:
+    request: 5Gi
+    className: default
+
+volumeServer:
+  image:
+    repository: mjpitz/seaweedfs
+    tag: latest
+    pullPolicy: Always
+
+filerServer:
+  image:
+    repository: mjpitz/seaweedfs
+    tag: latest
+    pullPolicy: Always
+  storage:
+    request: 5Gi
+    className: default
+
+s3Server:
+  replicas: 2
+  image:
+    repository: mjpitz/seaweedfs
+    tag: latest
+    pullPolicy: Always
