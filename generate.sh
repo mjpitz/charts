@@ -2,22 +2,19 @@
 
 readonly base_url="https://mjpitz.github.io/charts"
 
+# start off with the current gh-pages
+rm -rf dist/
+git clone --depth 1 -b gh-pages https://github.com/mjpitz/charts.git dist
+
+# port in any new templates
 for chart in $(find . -iname Chart.yaml | xargs dirname | cut -c 3-); do
     destination=dist/$(dirname ${chart})
     mkdir -p ${destination}
     helm package ${chart} -d ${destination}
 done
 
-trap "rm index.yaml" EXIT
-
 for repo in $(ls -1 dist/); do
     repo_url="${base_url}/${repo}"
 
-    # attempt to fetch existing index.yaml
-    wget -q "${repo_url}/index.yaml"
-    if [[ $? -ne 0 ]]; then
-        echo "apiVersion: v1" > index.yaml
-    fi
-
-    helm repo index dist/${repo} --merge index.yaml --url "${repo_url}"
+    helm repo index dist/${repo} --url "${repo_url}"
 done
