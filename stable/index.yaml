@@ -1,0 +1,38 @@
+apiVersion: v1
+entries:
+  rabbitmq-operator:
+  - apiVersion: v1
+    appVersion: 0.0.5
+    created: "2019-11-14T07:38:15.329260827Z"
+    description: A Helm chart for Kubernetes
+    digest: 022da8641a28ce6efcdd724db8b697f1d1fb1c02ec6f1c4fb159eb3ccce3b8bd
+    keywords:
+    - indeedeng
+    - rabbitmq
+    - operator
+    maintainers:
+    - name: Mya Pitzeruse
+      url: http://github.com/mjpitz
+    name: rabbitmq-operator
+    urls:
+    - https://mjpitz.github.io/charts/stable/rabbitmq-operator-0.1.0.tgz
+    version: 0.1.0
+  seaweedfs:
+  - apiVersion: v1
+    appVersion: "1.44"
+    created: "2019-11-14T07:38:15.329625591Z"
+    description: A Helm chart for Kubernetes
+    digest: 08099f6273e82d38de44a53e9f6781716ca5170de6721381e8fc3d890e927ff6
+    keywords:
+    - seaweedfs
+    - haystack
+    - s3
+    - hdfs
+    maintainers:
+    - name: Mya Pitzeruse
+      url: http://github.com/mjpitz
+    name: seaweedfs
+    urls:
+    - https://mjpitz.github.io/charts/stable/seaweedfs-0.1.0.tgz
+    version: 0.1.0
+generated: "2019-11-14T07:38:15.328643158Z"
