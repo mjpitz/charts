@@ -18,3 +18,5 @@ for repo in $(ls -1 dist/); do
 
     helm repo index dist/${repo} --url "${repo_url}"
 done
+
+cp README.md dist/README.md
