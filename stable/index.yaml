@@ -3,9 +3,9 @@ entries:
   rabbitmq-operator:
   - apiVersion: v1
     appVersion: 0.0.5
-    created: "2019-11-14T15:52:00.218966865Z"
-    description: A Helm chart for Kubernetes
-    digest: 4fd1630240970e3f5cf9dccaf71b8faf67aeffac6e3d30ca8f930d76d8d82266
+    created: "2019-11-15T04:34:06.51907007Z"
+    description: A Helm chart for Indeed's rabbitmq-operator
+    digest: 5156fb9cf7dfd3e2df255f351200c16f13d6de078ceb1882c753d3007a38628f
     keywords:
     - indeedeng
     - rabbitmq
@@ -20,9 +20,9 @@ entries:
   seaweedfs:
   - apiVersion: v1
     appVersion: "1.44"
-    created: "2019-11-14T15:52:00.219809628Z"
-    description: A Helm chart for Kubernetes
-    digest: e76c5860aaf8e3c659ecae6cdcf0d00bb19408d3f6ca10b67d3ee21b3cea5269
+    created: "2019-11-15T04:34:06.519905307Z"
+    description: A Helm chart for SeaweedFS
+    digest: 2728a7df67daa3ef62e84dd93e6c7d3b16386eec53364653c9690dd577e04a7f
     keywords:
     - seaweedfs
     - haystack
@@ -35,4 +35,4 @@ entries:
     urls:
     - https://mjpitz.github.io/charts/stable/seaweedfs-0.1.0.tgz
     version: 0.1.0
-generated: "2019-11-14T15:52:00.217732813Z"
+generated: "2019-11-15T04:34:06.518216401Z"
