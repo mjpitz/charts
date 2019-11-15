@@ -1,7 +1,7 @@
 apiVersion: v1
 name: rabbitmq-operator
 version: 0.1.0
-description: A Helm chart for Kubernetes
+description: A Helm chart for Indeed's rabbitmq-operator
 type: application
 keywords:
   - indeedeng

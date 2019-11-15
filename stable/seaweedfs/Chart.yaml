@@ -1,7 +1,7 @@
 apiVersion: v1
 name: seaweedfs
 version: 0.1.0
-description: A Helm chart for Kubernetes
+description: A Helm chart for SeaweedFS
 type: application
 keywords:
   - seaweedfs
