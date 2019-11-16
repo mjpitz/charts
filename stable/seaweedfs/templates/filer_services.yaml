@@ -20,3 +20,28 @@ spec:
     - port: 8888
       name: http
       protocol: TCP
+{{- if .Values.filerServer.createLoadBalanacer }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: {{ .Release.Namespace }}
+  name: filer-lb
+  labels:
+    app.kubernetes.io/name: filer
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/version: {{ .Chart.Version }}
+    app.kubernetes.io/part-of: {{ .Chart.Name }}
+    app.kubernetes.io/managed-by: helm
+spec:
+  type: LoadBalancer
+  selector:
+    app.kubernetes.io/name: filer
+  ports:
+    - port: 18888
+      name: grpc
+      protocol: TCP
+    - port: 8888
+      name: http
+      protocol: TCP
+{{- end }}

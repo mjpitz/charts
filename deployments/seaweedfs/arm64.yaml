@@ -1,5 +1,6 @@
 managerServer:
   replicas: 3
+  createLoadBalancer: true
   image:
     repository: mjpitz/seaweedfs
     tag: latest
@@ -15,6 +16,7 @@ volumeServer:
     pullPolicy: Always
 
 filerServer:
+  createLoadBalancer: true
   image:
     repository: mjpitz/seaweedfs
     tag: latest
@@ -25,6 +27,7 @@ filerServer:
 
 s3Server:
   replicas: 2
+  createLoadBalancer: true
   image:
     repository: mjpitz/seaweedfs
     tag: latest
