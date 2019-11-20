@@ -3,9 +3,9 @@ entries:
   rabbitmq-operator:
   - apiVersion: v1
     appVersion: 0.0.5
-    created: "2019-11-16T05:29:33.245229963Z"
+    created: "2019-11-20T06:08:50.705502919Z"
     description: A Helm chart for Indeed's rabbitmq-operator
-    digest: 7510ee1407dbaa83a2862f7c6150ac080eb9aa90dc1e8d15ef5b42c38482f8c7
+    digest: b3ae1114d387c20c533f9b3ab69bc7a2ad8521afd5cb3fe5e03f3ade1b4a137e
     keywords:
     - indeedeng
     - rabbitmq
@@ -20,7 +20,24 @@ entries:
   seaweedfs:
   - apiVersion: v1
     appVersion: "1.44"
-    created: "2019-11-16T05:29:33.246765143Z"
+    created: "2019-11-20T06:08:50.707785426Z"
+    description: A Helm chart for SeaweedFS
+    digest: 12e1137fbf546fa5c19598d0580b0ea081b9dd0456bed446b214d0d4a61efe10
+    keywords:
+    - seaweedfs
+    - haystack
+    - s3
+    - hdfs
+    maintainers:
+    - name: Mya Pitzeruse
+      url: http://github.com/mjpitz
+    name: seaweedfs
+    urls:
+    - https://mjpitz.github.io/charts/stable/seaweedfs-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v1
+    appVersion: "1.44"
+    created: "2019-11-20T06:08:50.707031581Z"
     description: A Helm chart for SeaweedFS
     digest: 027461c356632617cf939c6e8d22bec52e1c7e79c46480acd9790903f574a148
     keywords:
@@ -37,7 +54,7 @@ entries:
     version: 0.1.1
   - apiVersion: v1
     appVersion: "1.44"
-    created: "2019-11-16T05:29:33.246024711Z"
+    created: "2019-11-20T06:08:50.706277626Z"
     description: A Helm chart for SeaweedFS
     digest: 2728a7df67daa3ef62e84dd93e6c7d3b16386eec53364653c9690dd577e04a7f
     keywords:
@@ -52,4 +69,4 @@ entries:
     urls:
     - https://mjpitz.github.io/charts/stable/seaweedfs-0.1.0.tgz
     version: 0.1.0
-generated: "2019-11-16T05:29:33.243587021Z"
+generated: "2019-11-20T06:08:50.70384873Z"
