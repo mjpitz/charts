@@ -20,7 +20,7 @@ spec:
     - port: 8888
       name: http
       protocol: TCP
-{{- if .Values.filerServer.createLoadBalanacer }}
+{{- if .Values.filerServer.createLoadBalancer }}
 ---
 apiVersion: v1
 kind: Service

@@ -17,7 +17,7 @@ spec:
     - port: 8333
       name: http
       protocol: TCP
-{{- if .Values.s3Server.createLoadBalanacer }}
+{{- if .Values.s3Server.createLoadBalancer }}
 ---
 apiVersion: v1
 kind: Service

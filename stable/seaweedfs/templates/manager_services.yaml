@@ -20,7 +20,7 @@ spec:
     - port: 9333
       name: http
       protocol: TCP
-{{- if .Values.managerServer.createLoadBalanacer }}
+{{- if .Values.managerServer.createLoadBalancer }}
 ---
 apiVersion: v1
 kind: Service
