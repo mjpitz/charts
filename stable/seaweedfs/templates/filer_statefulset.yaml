@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "filer.fullname" . }}
+  labels:
+    {{- include "filer.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.filer.replicas }}
+  serviceName: {{ include "filer.fullname" . }}
+  selector:
+    matchLabels:
+      {{- include "filer.selectorLabels" . | nindent 8 }}
+  volumeClaimTemplates:
+    - metadata:
+        name: {{ include "filer.fullname" . }}-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: {{ .Values.filer.storage.request }}
+        storageClassName: {{ .Values.filer.storage.className }}
+  template:
+    metadata:
+      labels:
+        {{- include "filer.labels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "filer.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.filer.podSecurityContext | nindent 8 }}
+      volumes:
+        - name: config
+          secret:
+            secretName: {{ include "filer.fullname" . }}
+      containers:
+        - name: weed
+          image: {{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - filer
+            - -master={{ include "manager.servers" . }}
+            - -ip=0.0.0.0
+            - -port=8888
+          ports:
+            - containerPort: 18888
+              name: grpc
+            - containerPort: 8888
+              name: http
+          volumeMounts:
+            - name: config
+              mountPath: /etc/seaweedfs
+            - name: {{ include "filer.fullname" . }}-data
+              mountPath: /data/
+              readOnly: false
+          resources:
+            {{- toYaml .Values.filer.resources | nindent 12 }}
+          securityContext:
+            {{- toYaml .Values.filer.securityContext | nindent 12 }}
+      {{- with .Values.filer.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.filer.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.filer.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

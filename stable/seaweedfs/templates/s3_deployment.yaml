@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "s3.fullname" . }}
+  labels:
+    {{- include "s3.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.s3.replicas }}
+  selector:
+    matchLabels:
+      {{- include "s3.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "s3.labels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "s3.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.s3.podSecurityContext | nindent 8 }}
+      containers:
+        - name: weed
+          image: {{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - s3
+            - -filer={{ include "filer.fullname" . }}:8888
+            - -port=8333
+          ports:
+            - containerPort: 8333
+              name: http
+          resources:
+            {{- toYaml .Values.s3.resources | nindent 12 }}
+          securityContext:
+            {{- toYaml .Values.s3.securityContext | nindent 12 }}
+      {{- with .Values.s3.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.s3.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.s3.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "manager.fullname" . }}
+  labels:
+    {{- include "manager.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.manager.replicas }}
+  serviceName: {{ include "manager.fullname" . }}
+  selector:
+    matchLabels:
+      {{- include "manager.selectorLabels" . | nindent 8 }}
+  volumeClaimTemplates:
+    - metadata:
+        name: {{ include "manager.fullname" . }}-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: {{ .Values.manager.storage.request }}
+        storageClassName: {{ .Values.manager.storage.className }}
+  template:
+    metadata:
+      labels:
+        {{- include "manager.labels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "manager.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.manager.podSecurityContext | nindent 8 }}
+      containers:
+        - name: weed
+          image: {{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+          args:
+            - master
+            - -mdir=/data/
+            - -peers={{ include "manager.servers" . }}
+            - -ip=$(POD_NAME).{{ include "manager.fullname" . }}
+            - -port=9333
+          ports:
+            - containerPort: 19333
+              name: grpc
+            - containerPort: 9333
+              name: http
+          volumeMounts:
+            - name: {{ include "manager.fullname" . }}-data
+              mountPath: /data/
+              readOnly: false
+          resources:
+            {{- toYaml .Values.manager.resources | nindent 12 }}
+          securityContext:
+            {{- toYaml .Values.manager.securityContext | nindent 12 }}
+      {{- with .Values.manager.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.manager.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.manager.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

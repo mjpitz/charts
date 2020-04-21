@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "filer.fullname" . }}
+  labels:
+    {{- include "filer.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  selector:
+    {{- include "filer.selectorLabels" . | nindent 4 }}
+  ports:
+    - port: 18888
+      name: grpc
+      protocol: TCP
+    - port: 8888
+      name: http
+      protocol: TCP
