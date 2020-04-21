@@ -3,9 +3,9 @@ entries:
   rabbitmq-operator:
   - apiVersion: v1
     appVersion: 0.0.5
-    created: "2020-04-21T04:18:37.965541483Z"
+    created: "2020-04-21T12:54:55.820073325Z"
     description: A Helm chart for Indeed's rabbitmq-operator
-    digest: db96b8c7178f2fb623338d1095ee1860808a6f43a9d582433ba7a0984c01e95a
+    digest: b9e35617fd90e47c1074408d4c43651b638f94106e4b1f4232c822a6e537172d
     keywords:
     - indeedeng
     - rabbitmq
@@ -14,13 +14,32 @@ entries:
     - name: Mya Pitzeruse
       url: http://github.com/mjpitz
     name: rabbitmq-operator
+    type: application
     urls:
     - https://mjpitz.github.io/charts/stable/rabbitmq-operator-0.1.0.tgz
     version: 0.1.0
   seaweedfs:
+  - apiVersion: v2
+    appVersion: "1.44"
+    created: "2020-04-21T12:54:55.8221013Z"
+    description: A Helm chart for SeaweedFS
+    digest: e1557733ae430b67706b694b7875f9048d8693db4cf74ba7ae1c0b1bb2d43022
+    keywords:
+    - seaweedfs
+    - haystack
+    - s3
+    - hdfs
+    maintainers:
+    - name: Mya Pitzeruse
+      url: http://github.com/mjpitz
+    name: seaweedfs
+    type: application
+    urls:
+    - https://mjpitz.github.io/charts/stable/seaweedfs-0.1.3.tgz
+    version: 0.1.3
   - apiVersion: v1
     appVersion: "1.44"
-    created: "2020-04-21T04:18:37.96652109Z"
+    created: "2020-04-21T12:54:55.821465805Z"
     description: A Helm chart for SeaweedFS
     digest: 12e1137fbf546fa5c19598d0580b0ea081b9dd0456bed446b214d0d4a61efe10
     keywords:
@@ -37,7 +56,7 @@ entries:
     version: 0.1.2
   - apiVersion: v1
     appVersion: "1.44"
-    created: "2020-04-21T04:18:37.966207698Z"
+    created: "2020-04-21T12:54:55.821054201Z"
     description: A Helm chart for SeaweedFS
     digest: 027461c356632617cf939c6e8d22bec52e1c7e79c46480acd9790903f574a148
     keywords:
@@ -54,7 +73,7 @@ entries:
     version: 0.1.1
   - apiVersion: v1
     appVersion: "1.44"
-    created: "2020-04-21T04:18:37.965894172Z"
+    created: "2020-04-21T12:54:55.820588631Z"
     description: A Helm chart for SeaweedFS
     digest: 2728a7df67daa3ef62e84dd93e6c7d3b16386eec53364653c9690dd577e04a7f
     keywords:
@@ -69,4 +88,4 @@ entries:
     urls:
     - https://mjpitz.github.io/charts/stable/seaweedfs-0.1.0.tgz
     version: 0.1.0
-generated: "2020-04-21T04:18:37.964984707Z"
+generated: "2020-04-21T12:54:55.819400779Z"
