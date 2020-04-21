@@ -1,18 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: {{ .Release.Namespace }}
-  name: manager
+  name: {{ include "manager.fullname" . }}
   labels:
-    app.kubernetes.io/name: manager
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/version: {{ .Chart.Version }}
-    app.kubernetes.io/part-of: {{ .Chart.Name }}
-    app.kubernetes.io/managed-by: helm
+    {{- include "manager.labels" . | nindent 4 }}
 spec:
   clusterIP: None
   selector:
-    app.kubernetes.io/name: manager
+    {{- include "manager.selectorLabels" . | nindent 4 }}
   ports:
     - port: 19333
       name: grpc
@@ -20,28 +15,3 @@ spec:
     - port: 9333
       name: http
       protocol: TCP
-{{- if .Values.managerServer.createLoadBalancer }}
----
-apiVersion: v1
-kind: Service
-metadata:
-  namespace: {{ .Release.Namespace }}
-  name: manager-lb
-  labels:
-    app.kubernetes.io/name: manager
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/version: {{ .Chart.Version }}
-    app.kubernetes.io/part-of: {{ .Chart.Name }}
-    app.kubernetes.io/managed-by: helm
-spec:
-  type: LoadBalancer
-  selector:
-    app.kubernetes.io/name: manager
-  ports:
-    - port: 19333
-      name: grpc
-      protocol: TCP
-    - port: 9333
-      name: http
-      protocol: TCP
-{{- end }}

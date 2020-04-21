@@ -1,18 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: {{ .Release.Namespace }}
-  name: filer
+  name: {{ include "filer.fullname" . }}
   labels:
-    app.kubernetes.io/name: filer
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/version: {{ .Chart.Version }}
-    app.kubernetes.io/part-of: {{ .Chart.Name }}
-    app.kubernetes.io/managed-by: helm
+    {{- include "filer.labels" . | nindent 4 }}
 spec:
-  clusterIP: None
+  type: ClusterIP
   selector:
-    app.kubernetes.io/name: filer
+    {{- include "filer.selectorLabels" . | nindent 4 }}
   ports:
     - port: 18888
       name: grpc
@@ -20,28 +15,3 @@ spec:
     - port: 8888
       name: http
       protocol: TCP
-{{- if .Values.filerServer.createLoadBalancer }}
----
-apiVersion: v1
-kind: Service
-metadata:
-  namespace: {{ .Release.Namespace }}
-  name: filer-lb
-  labels:
-    app.kubernetes.io/name: filer
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/version: {{ .Chart.Version }}
-    app.kubernetes.io/part-of: {{ .Chart.Name }}
-    app.kubernetes.io/managed-by: helm
-spec:
-  type: LoadBalancer
-  selector:
-    app.kubernetes.io/name: filer
-  ports:
-    - port: 18888
-      name: grpc
-      protocol: TCP
-    - port: 8888
-      name: http
-      protocol: TCP
-{{- end }}

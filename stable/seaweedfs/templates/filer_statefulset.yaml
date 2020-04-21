@@ -1,53 +1,45 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  namespace: {{ .Release.Namespace }}
-  name: filer
+  name: {{ include "filer.fullname" . }}
   labels:
-    app.kubernetes.io/name: filer
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/version: {{ .Chart.Version }}
-    app.kubernetes.io/part-of: {{ .Chart.Name }}
-    app.kubernetes.io/managed-by: helm
+    {{- include "filer.labels" . | nindent 4 }}
 spec:
-  replicas: 1 # only support 1 for now
-  serviceName: filer
+  replicas: {{ .Values.filer.replicas }}
+  serviceName: {{ include "filer.fullname" . }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: filer
+      {{- include "filer.selectorLabels" . | nindent 8 }}
   volumeClaimTemplates:
     - metadata:
-        name: filer-data
+        name: {{ include "filer.fullname" . }}-data
       spec:
         accessModes:
           - ReadWriteOnce
         resources:
           requests:
-            storage: {{ .Values.filerServer.storage.request }}
-        storageClassName: {{ .Values.filerServer.storage.className }}
+            storage: {{ .Values.filer.storage.request }}
+        storageClassName: {{ .Values.filer.storage.className }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: filer
-        app.kubernetes.io/instance: {{ .Release.Name }}
-        app.kubernetes.io/version: {{ .Chart.Version }}
-        app.kubernetes.io/part-of: {{ .Chart.Name }}
-        app.kubernetes.io/managed-by: helm
+        {{- include "filer.labels" . | nindent 8 }}
     spec:
-      serviceAccountName: filer
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "filer.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.filer.podSecurityContext | nindent 8 }}
       volumes:
         - name: config
-          configMap:
-            name: filer-config
+          secret:
+            secretName: {{ include "filer.fullname" . }}
       containers:
         - name: weed
-          image: {{ .Values.filerServer.image.repository }}:{{ .Values.filerServer.image.tag }}
-          imagePullPolicy: {{ .Values.filerServer.image.pullPolicy }}
-          env:
-            - name: PODIP
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.podIP
+          image: {{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
             - filer
             - -master={{ include "manager.servers" . }}
@@ -61,6 +53,22 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /etc/seaweedfs
-            - name: filer-data
+            - name: {{ include "filer.fullname" . }}-data
               mountPath: /data/
               readOnly: false
+          resources:
+            {{- toYaml .Values.filer.resources | nindent 12 }}
+          securityContext:
+            {{- toYaml .Values.filer.securityContext | nindent 12 }}
+      {{- with .Values.filer.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.filer.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.filer.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

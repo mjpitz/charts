@@ -1,46 +1,43 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  namespace: {{ .Release.Namespace }}
-  name: manager
+  name: {{ include "manager.fullname" . }}
   labels:
-    app.kubernetes.io/name: manager
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/version: {{ .Chart.Version }}
-    app.kubernetes.io/part-of: {{ .Chart.Name }}
-    app.kubernetes.io/managed-by: helm
+    {{- include "manager.labels" . | nindent 4 }}
 spec:
-  replicas: {{ .Values.managerServer.replicas }}
-  serviceName: manager
+  replicas: {{ .Values.manager.replicas }}
+  serviceName: {{ include "manager.fullname" . }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: manager
+      {{- include "manager.selectorLabels" . | nindent 8 }}
   volumeClaimTemplates:
     - metadata:
-        name: manager-data
+        name: {{ include "manager.fullname" . }}-data
       spec:
         accessModes:
           - ReadWriteOnce
         resources:
           requests:
-            storage: {{ .Values.managerServer.storage.request }}
-        storageClassName: {{ .Values.managerServer.storage.className }}
+            storage: {{ .Values.manager.storage.request }}
+        storageClassName: {{ .Values.manager.storage.className }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: manager
-        app.kubernetes.io/instance: {{ .Release.Name }}
-        app.kubernetes.io/version: {{ .Chart.Version }}
-        app.kubernetes.io/part-of: {{ .Chart.Name }}
-        app.kubernetes.io/managed-by: helm
+        {{- include "manager.labels" . | nindent 8 }}
     spec:
-      serviceAccountName: manager
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "manager.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.manager.podSecurityContext | nindent 8 }}
       containers:
         - name: weed
-          image: {{ .Values.managerServer.image.repository }}:{{ .Values.managerServer.image.tag }}
-          imagePullPolicy: {{ .Values.managerServer.image.pullPolicy }}
+          image: {{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            - name: PODNAME
+            - name: POD_NAME
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
@@ -48,7 +45,7 @@ spec:
             - master
             - -mdir=/data/
             - -peers={{ include "manager.servers" . }}
-            - -ip=$(PODNAME).manager
+            - -ip=$(POD_NAME).{{ include "manager.fullname" . }}
             - -port=9333
           ports:
             - containerPort: 19333
@@ -56,6 +53,22 @@ spec:
             - containerPort: 9333
               name: http
           volumeMounts:
-            - name: manager-data
+            - name: {{ include "manager.fullname" . }}-data
               mountPath: /data/
               readOnly: false
+          resources:
+            {{- toYaml .Values.manager.resources | nindent 12 }}
+          securityContext:
+            {{- toYaml .Values.manager.securityContext | nindent 12 }}
+      {{- with .Values.manager.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.manager.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.manager.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
