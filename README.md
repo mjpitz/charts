@@ -1,3 +1,3 @@
 ```
-helm repo add mjpitz-stable https://mjpitz.github.io/charts/stable/
+helm repo add mjpitz https://mjpitz.github.io/charts/
 ```

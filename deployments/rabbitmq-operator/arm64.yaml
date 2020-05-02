@@ -1,4 +1,0 @@
-image:
-  url: mjpitz/rabbitmq-operator
-  tag: latest
-  pullPolicy: Always
