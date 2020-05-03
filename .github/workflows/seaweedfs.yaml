@@ -29,16 +29,12 @@ jobs:
 
       - name: Build Container Image
         if: github.ref == 'refs/heads/master'
-        env:
-          VERSION: ${{ env.VERSION }}
-          IMAGE: mjpitz/seaweedfs
-          IMAGE_PATH: docker/seaweedfs
         run: |
           docker buildx build \
             --platform linux/amd64,linux/arm64,linux/arm/v7 \
-            --build-arg=VERSION=${VERSION} \
-            --tag ${IMAGE}:latest \
-            --tag ${IMAGE}:${VERSION} \
-            -f ${IMAGE_PATH}/Dockerfile \
-            ${IMAGE_PATH} \
+            --build-arg VERSION=${{ env.VERSION }} \
+            --tag mjpitz/seaweedfs:latest \
+            --tag mjpitz/seaweedfs:${{ env.VERSION }} \
+            -f ./docker/seaweedfs/Dockerfile \
+            ./docker/seaweedfs \
             --push
