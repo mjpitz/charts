@@ -6,7 +6,7 @@ on:
       - '.github/workflows/charts.yaml'
       - 'mjpitz/**'
 
-job:
+jobs:
   site:
     runs-on: ubuntu-latest
     steps:
