@@ -1,0 +1,38 @@
+#!/bin/sh
+
+OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+ARCH=$(uname -m)
+
+if [[ "${ARCH}" == "x86_64" ]]; then
+    ARCH=amd64
+elif [[ "${ARCH}" == "i386" ]]; then
+    ARCH=386
+elif [[ "${ARCH}" == "aarch64" ]]; then
+    ARCH=arm64
+else
+    ARCH=arm
+fi
+
+if [[ $# -lt 1 ]]; then
+cat <<EOF
+  usage: install-github-binary <version>
+EOF
+exit 1
+fi
+
+readonly USR="chrislusf"
+readonly APP="seaweedfs"
+readonly APP_VERSION="${1}"
+
+cat <<EOF
+user:     ${USR}
+app:      ${APP}
+version:  ${APP_VERSION}
+os:       ${OS}
+arch:     ${ARCH}
+EOF
+
+
+curl -sSL -O "https://github.com/${USR}/${APP}/releases/download/${APP_VERSION}/${OS}_${ARCH}.tar.gz"
+tar zxf ${OS}_${ARCH}.tar.gz
+mv weed /usr/bin/weed
