@@ -3,7 +3,7 @@ entries:
   rabbitmq-operator:
   - apiVersion: v1
     appVersion: 0.0.5
-    created: "2020-05-24T15:13:05.664886306Z"
+    created: "2020-06-06T15:47:08.588407387Z"
     description: A Helm chart for Indeed's rabbitmq-operator
     digest: b9e35617fd90e47c1074408d4c43651b638f94106e4b1f4232c822a6e537172d
     keywords:
@@ -20,10 +20,10 @@ entries:
     version: 0.1.0
   seaweedfs:
   - apiVersion: v2
-    appVersion: "1.79"
-    created: "2020-05-24T15:13:05.684639573Z"
+    appVersion: "1.8"
+    created: "2020-06-06T15:47:08.593000189Z"
     description: A Helm chart for SeaweedFS
-    digest: c1c508beeb15541420eadc8f4096c057c5769cab80f0ca4b939db1595fdafeb9
+    digest: 787abc3bd233851855b1d56fe4326a359352ebdb847506be98dee936e3b6b7ab
     keywords:
     - seaweedfs
     - haystack
@@ -39,7 +39,7 @@ entries:
     version: 0.1.6
   - apiVersion: v2
     appVersion: "1.78"
-    created: "2020-05-24T15:13:05.683894793Z"
+    created: "2020-06-06T15:47:08.592235589Z"
     description: A Helm chart for SeaweedFS
     digest: b5910f88f71625b30d5eef3ce9a25a713b9fa9d49a141dd990848b17204f6862
     keywords:
@@ -57,7 +57,7 @@ entries:
     version: 0.1.5
   - apiVersion: v2
     appVersion: "1.77"
-    created: "2020-05-24T15:13:05.683111714Z"
+    created: "2020-06-06T15:47:08.591437988Z"
     description: A Helm chart for SeaweedFS
     digest: 9332ce4b90cceaa430c84840f03cbe9f7b5a9f017308abe4d5f336913b41d092
     keywords:
@@ -75,7 +75,7 @@ entries:
     version: 0.1.4
   - apiVersion: v2
     appVersion: "1.44"
-    created: "2020-05-24T15:13:05.682351535Z"
+    created: "2020-06-06T15:47:08.590690588Z"
     description: A Helm chart for SeaweedFS
     digest: c58dd58de2beb75d5072d74eee448d042736afecac55c4d2fb1718eba0863e2c
     keywords:
@@ -93,7 +93,7 @@ entries:
     version: 0.1.3
   - apiVersion: v1
     appVersion: "1.44"
-    created: "2020-05-24T15:13:05.666420965Z"
+    created: "2020-06-06T15:47:08.589943888Z"
     description: A Helm chart for SeaweedFS
     digest: 12e1137fbf546fa5c19598d0580b0ea081b9dd0456bed446b214d0d4a61efe10
     keywords:
@@ -110,7 +110,7 @@ entries:
     version: 0.1.2
   - apiVersion: v1
     appVersion: "1.44"
-    created: "2020-05-24T15:13:05.665921278Z"
+    created: "2020-06-06T15:47:08.589440287Z"
     description: A Helm chart for SeaweedFS
     digest: 027461c356632617cf939c6e8d22bec52e1c7e79c46480acd9790903f574a148
     keywords:
@@ -127,7 +127,7 @@ entries:
     version: 0.1.1
   - apiVersion: v1
     appVersion: "1.44"
-    created: "2020-05-24T15:13:05.665396293Z"
+    created: "2020-06-06T15:47:08.588920987Z"
     description: A Helm chart for SeaweedFS
     digest: 2728a7df67daa3ef62e84dd93e6c7d3b16386eec53364653c9690dd577e04a7f
     keywords:
@@ -142,4 +142,4 @@ entries:
     urls:
     - https://mjpitz.github.io/charts/seaweedfs-0.1.0.tgz
     version: 0.1.0
-generated: "2020-05-24T15:13:05.664189325Z"
+generated: "2020-06-06T15:47:08.587674486Z"
