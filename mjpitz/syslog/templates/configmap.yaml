@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "syslog.fullname" . }}
+  labels:
+    {{- include "syslog.labels" . | nindent 4 }}
+data:
+  syslog-ng.conf: |
+    {{ .Values.config | nindent 4 }}

@@ -1,0 +1,89 @@
+# Default values for syslog.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: balabit/syslog-ng
+  tag: ""
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+config: |
+  #############################################################################
+  # Default syslog-ng.conf file which collects all local logs into a
+  # single file called /var/log/messages tailored to container usage.
+  #
+
+  @version: 3.18
+  @include "scl.conf"
+
+  source s_local {
+  	internal();
+  };
+
+  source s_network {
+  	default-network-drivers(
+  		# NOTE: TLS support
+  		#
+  		# the default-network-drivers() source driver opens the TLS
+  		# enabled ports as well, however without an actual key/cert
+  		# pair they will not operate and syslog-ng would display a
+  		# warning at startup.
+  		#
+  		#tls(key-file("/path/to/ssl-private-key") cert-file("/path/to/ssl-cert"))
+  	);
+  };
+
+  destination d_local {
+  	file("/dev/stdout");
+  };
+
+  log {
+  	source(s_local);
+  	source(s_network);
+  	destination(d_local);
+  };
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
