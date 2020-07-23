@@ -1,0 +1,14 @@
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "effx.fullname" . }}
+  labels:
+    {{- include "effx.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "effx.fullname" . }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "effx.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}

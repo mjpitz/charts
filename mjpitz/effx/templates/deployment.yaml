@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "effx.fullname" . }}
+  labels:
+    {{- include "effx.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "effx.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "effx.selectorLabels" . | nindent 8 }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      serviceAccountName: {{ include "effx.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 9000
+              protocol: TCP
+          env:
+            - name: EFFX_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "effx.fullname" . }}
+                  key: api-key
+            - name: ENABLE_KUBERNETES_SCALE_EVENTS
+              value: {{ .Values.enablements.scaleEvents | quote }}
+            - name: ENABLE_KUBERNETES_IMAGE_EVENTS
+              value: {{ .Values.enablements.imageEvents | quote }}
+            - name: ENABLE_ISTIO
+              value: {{ .Values.enablements.istio | quote }}
+            - name: ENABLE_LINKERD
+              value: {{ .Values.enablements.linkerd | quote }}
+          # livenessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
+          # readinessProbe:
+          #   httpGet:
+          #     path: /
+          #     port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
