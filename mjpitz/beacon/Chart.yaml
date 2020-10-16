@@ -1,0 +1,12 @@
+apiVersion: v2
+type: application
+name: beacon
+description: A simple Google Analytics beacon
+sources:
+  - https://github.com/mjpitz/lighthouse
+maintainers:
+  - name: Mya Pitzeruse
+    email: mjpitz@deps.cloud
+    url: https://mjpitz.com
+version: 0.0.1
+appVersion: 0.0.1
