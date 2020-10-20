@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  repository: mjpitz/lighthouse
+  repository: mjpitz/beacon
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""

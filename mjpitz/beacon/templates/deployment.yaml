@@ -39,9 +39,6 @@ spec:
             {{- if .Values.config.userID }}
             - name: USER_ID
               value: {{ .Values.config.userID }}
-            {{- else }}
-            - name: CLIENT_ID
-              value: {{ uuidv4 }}
             {{- end }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
