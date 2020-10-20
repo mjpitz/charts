@@ -2,8 +2,24 @@ apiVersion: v1
 entries:
   beacon:
   - apiVersion: v2
+    appVersion: 0.0.3
+    created: "2020-10-20T01:52:23.151924263Z"
+    description: A simple Google Analytics beacon
+    digest: aff11720ad4947e4a5e8d78a27bda3adf6c72a8bb17c8a5ee292545641b71761
+    maintainers:
+    - email: mjpitz@deps.cloud
+      name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: beacon
+    sources:
+    - https://github.com/mjpitz/lighthouse
+    type: application
+    urls:
+    - https://mjpitz.github.io/charts/beacon-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
     appVersion: 0.0.1
-    created: "2020-10-16T05:32:01.57320535Z"
+    created: "2020-10-20T01:52:23.140734783Z"
     description: A simple Google Analytics beacon
     digest: 6706a9e2f54330867b99d3643b99ed655d254f88e7a43ddc2cdd55fbd8247239
     maintainers:
@@ -20,9 +36,9 @@ entries:
   effx:
   - apiVersion: v2
     appVersion: v0.1.3
-    created: "2020-10-16T05:32:01.57378726Z"
+    created: "2020-10-20T01:52:23.152591361Z"
     description: A Helm chart for Kubernetes
-    digest: 731adab7a4477b512b3169e4779c2d7056bcf0efa9b62d683900a7e277fd8459
+    digest: ff6f6d957e5f4b1bad63765bfe60fa60b8b7332fc61c16db4ed1f5ff3609064a
     name: effx
     type: application
     urls:
@@ -31,7 +47,7 @@ entries:
   rabbitmq-operator:
   - apiVersion: v1
     appVersion: 0.0.5
-    created: "2020-10-16T05:32:01.574309968Z"
+    created: "2020-10-20T01:52:23.15313306Z"
     description: A Helm chart for Indeed's rabbitmq-operator
     digest: b9e35617fd90e47c1074408d4c43651b638f94106e4b1f4232c822a6e537172d
     keywords:
@@ -49,9 +65,9 @@ entries:
   seaweedfs:
   - apiVersion: v2
     appVersion: "1.8"
-    created: "2020-10-16T05:32:01.579404952Z"
+    created: "2020-10-20T01:52:23.158085752Z"
     description: A Helm chart for SeaweedFS
-    digest: 1395565fa4a3ffa9e70b507183421dd2d44c46a7b0d4737f80ad6e515f5d1c81
+    digest: 148bf1ce7fadcb06eb7f9b1f5b65de09356d14177cfc19bee4cce204023c679d
     keywords:
     - seaweedfs
     - haystack
@@ -67,7 +83,7 @@ entries:
     version: 0.1.6
   - apiVersion: v2
     appVersion: "1.78"
-    created: "2020-10-16T05:32:01.578526038Z"
+    created: "2020-10-20T01:52:23.157285953Z"
     description: A Helm chart for SeaweedFS
     digest: b5910f88f71625b30d5eef3ce9a25a713b9fa9d49a141dd990848b17204f6862
     keywords:
@@ -85,7 +101,7 @@ entries:
     version: 0.1.5
   - apiVersion: v2
     appVersion: "1.77"
-    created: "2020-10-16T05:32:01.577712924Z"
+    created: "2020-10-20T01:52:23.156502954Z"
     description: A Helm chart for SeaweedFS
     digest: 9332ce4b90cceaa430c84840f03cbe9f7b5a9f017308abe4d5f336913b41d092
     keywords:
@@ -103,7 +119,7 @@ entries:
     version: 0.1.4
   - apiVersion: v2
     appVersion: "1.44"
-    created: "2020-10-16T05:32:01.576914111Z"
+    created: "2020-10-20T01:52:23.155631056Z"
     description: A Helm chart for SeaweedFS
     digest: c58dd58de2beb75d5072d74eee448d042736afecac55c4d2fb1718eba0863e2c
     keywords:
@@ -121,7 +137,7 @@ entries:
     version: 0.1.3
   - apiVersion: v1
     appVersion: "1.44"
-    created: "2020-10-16T05:32:01.576098598Z"
+    created: "2020-10-20T01:52:23.154765557Z"
     description: A Helm chart for SeaweedFS
     digest: 12e1137fbf546fa5c19598d0580b0ea081b9dd0456bed446b214d0d4a61efe10
     keywords:
@@ -138,7 +154,7 @@ entries:
     version: 0.1.2
   - apiVersion: v1
     appVersion: "1.44"
-    created: "2020-10-16T05:32:01.575511688Z"
+    created: "2020-10-20T01:52:23.154243858Z"
     description: A Helm chart for SeaweedFS
     digest: 027461c356632617cf939c6e8d22bec52e1c7e79c46480acd9790903f574a148
     keywords:
@@ -155,7 +171,7 @@ entries:
     version: 0.1.1
   - apiVersion: v1
     appVersion: "1.44"
-    created: "2020-10-16T05:32:01.574877478Z"
+    created: "2020-10-20T01:52:23.153691459Z"
     description: A Helm chart for SeaweedFS
     digest: 2728a7df67daa3ef62e84dd93e6c7d3b16386eec53364653c9690dd577e04a7f
     keywords:
@@ -170,4 +186,4 @@ entries:
     urls:
     - https://mjpitz.github.io/charts/seaweedfs-0.1.0.tgz
     version: 0.1.0
-generated: "2020-10-16T05:32:01.57198713Z"
+generated: "2020-10-20T01:52:23.140109084Z"
