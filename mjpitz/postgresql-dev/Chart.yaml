@@ -1,12 +1,14 @@
 apiVersion: v2
 type: application
-name: beacon
-description: A simple Google Analytics beacon
+name: postgresql-dev
+description: |
+  Quick helm chart for deploying a single instance of PostgreSQL. Mostly used
+  on my Raspberry Pi's.
 sources:
   - https://github.com/mjpitz/charts
 maintainers:
   - name: Mya Pitzeruse
     email: mjpitz@deps.cloud
     url: https://mjpitz.com
-version: 0.0.2
-appVersion: 0.0.3
+version: 0.1.0
+appVersion: 13.1
