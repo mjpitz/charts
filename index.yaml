@@ -3,23 +3,23 @@ entries:
   beacon:
   - apiVersion: v2
     appVersion: 0.0.3
-    created: "2020-10-20T01:52:23.151924263Z"
+    created: "2020-11-22T01:31:05.178684127Z"
     description: A simple Google Analytics beacon
-    digest: aff11720ad4947e4a5e8d78a27bda3adf6c72a8bb17c8a5ee292545641b71761
+    digest: ce74d20c78716aaa6a131de9b17143a58a9ca0d2e7f5324d54d8358a4c45b6a2
     maintainers:
     - email: mjpitz@deps.cloud
       name: Mya Pitzeruse
       url: https://mjpitz.com
     name: beacon
     sources:
-    - https://github.com/mjpitz/lighthouse
+    - https://github.com/mjpitz/charts
     type: application
     urls:
     - https://mjpitz.github.io/charts/beacon-0.0.2.tgz
     version: 0.0.2
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2020-10-20T01:52:23.140734783Z"
+    created: "2020-11-22T01:31:05.178277428Z"
     description: A simple Google Analytics beacon
     digest: 6706a9e2f54330867b99d3643b99ed655d254f88e7a43ddc2cdd55fbd8247239
     maintainers:
@@ -36,18 +36,37 @@ entries:
   effx:
   - apiVersion: v2
     appVersion: v0.1.3
-    created: "2020-10-20T01:52:23.152591361Z"
+    created: "2020-11-22T01:31:05.179217027Z"
     description: A Helm chart for Kubernetes
-    digest: ff6f6d957e5f4b1bad63765bfe60fa60b8b7332fc61c16db4ed1f5ff3609064a
+    digest: 85ae4cde06356a8bc5da6bc87b9ac676b8509f01f44233385bc5a5aebbd0810e
     name: effx
     type: application
     urls:
     - https://mjpitz.github.io/charts/effx-0.1.0.tgz
     version: 0.1.0
+  postgresql-dev:
+  - apiVersion: v2
+    appVersion: "13.1"
+    created: "2020-11-22T01:31:05.179639027Z"
+    description: |
+      Quick helm chart for deploying a single instance of PostgreSQL. Mostly used
+      on my Raspberry Pi's.
+    digest: 7a9a84a22813da977f1228548aa4b0e1b961655f6af12dff0c306790716996fd
+    maintainers:
+    - email: mjpitz@deps.cloud
+      name: Mya Pitzeruse
+      url: https://mjpitz.com
+    name: postgresql-dev
+    sources:
+    - https://github.com/mjpitz/charts
+    type: application
+    urls:
+    - https://mjpitz.github.io/charts/postgresql-dev-0.1.0.tgz
+    version: 0.1.0
   rabbitmq-operator:
   - apiVersion: v1
     appVersion: 0.0.5
-    created: "2020-10-20T01:52:23.15313306Z"
+    created: "2020-11-22T01:31:05.180053826Z"
     description: A Helm chart for Indeed's rabbitmq-operator
     digest: b9e35617fd90e47c1074408d4c43651b638f94106e4b1f4232c822a6e537172d
     keywords:
@@ -65,9 +84,9 @@ entries:
   seaweedfs:
   - apiVersion: v2
     appVersion: "1.8"
-    created: "2020-10-20T01:52:23.158085752Z"
+    created: "2020-11-22T01:31:05.200234214Z"
     description: A Helm chart for SeaweedFS
-    digest: 148bf1ce7fadcb06eb7f9b1f5b65de09356d14177cfc19bee4cce204023c679d
+    digest: bc2c5230b37f5230adeddacf36c48924f7acf18b037a0da80fcf5bdcddcafe84
     keywords:
     - seaweedfs
     - haystack
@@ -83,7 +102,7 @@ entries:
     version: 0.1.6
   - apiVersion: v2
     appVersion: "1.78"
-    created: "2020-10-20T01:52:23.157285953Z"
+    created: "2020-11-22T01:31:05.199538915Z"
     description: A Helm chart for SeaweedFS
     digest: b5910f88f71625b30d5eef3ce9a25a713b9fa9d49a141dd990848b17204f6862
     keywords:
@@ -101,7 +120,7 @@ entries:
     version: 0.1.5
   - apiVersion: v2
     appVersion: "1.77"
-    created: "2020-10-20T01:52:23.156502954Z"
+    created: "2020-11-22T01:31:05.198774015Z"
     description: A Helm chart for SeaweedFS
     digest: 9332ce4b90cceaa430c84840f03cbe9f7b5a9f017308abe4d5f336913b41d092
     keywords:
@@ -119,7 +138,7 @@ entries:
     version: 0.1.4
   - apiVersion: v2
     appVersion: "1.44"
-    created: "2020-10-20T01:52:23.155631056Z"
+    created: "2020-11-22T01:31:05.197942216Z"
     description: A Helm chart for SeaweedFS
     digest: c58dd58de2beb75d5072d74eee448d042736afecac55c4d2fb1718eba0863e2c
     keywords:
@@ -137,7 +156,7 @@ entries:
     version: 0.1.3
   - apiVersion: v1
     appVersion: "1.44"
-    created: "2020-10-20T01:52:23.154765557Z"
+    created: "2020-11-22T01:31:05.196887316Z"
     description: A Helm chart for SeaweedFS
     digest: 12e1137fbf546fa5c19598d0580b0ea081b9dd0456bed446b214d0d4a61efe10
     keywords:
@@ -154,7 +173,7 @@ entries:
     version: 0.1.2
   - apiVersion: v1
     appVersion: "1.44"
-    created: "2020-10-20T01:52:23.154243858Z"
+    created: "2020-11-22T01:31:05.181312526Z"
     description: A Helm chart for SeaweedFS
     digest: 027461c356632617cf939c6e8d22bec52e1c7e79c46480acd9790903f574a148
     keywords:
@@ -171,7 +190,7 @@ entries:
     version: 0.1.1
   - apiVersion: v1
     appVersion: "1.44"
-    created: "2020-10-20T01:52:23.153691459Z"
+    created: "2020-11-22T01:31:05.180591726Z"
     description: A Helm chart for SeaweedFS
     digest: 2728a7df67daa3ef62e84dd93e6c7d3b16386eec53364653c9690dd577e04a7f
     keywords:
@@ -186,4 +205,4 @@ entries:
     urls:
     - https://mjpitz.github.io/charts/seaweedfs-0.1.0.tgz
     version: 0.1.0
-generated: "2020-10-20T01:52:23.140109084Z"
+generated: "2020-11-22T01:31:05.177597828Z"
