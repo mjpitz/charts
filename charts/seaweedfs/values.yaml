@@ -92,7 +92,8 @@ agent:
   affinity: {}
 
 filer:
-  replicas: 1 # only supports 1 right now
+  # only supports 1 right now
+  replicas: 1
 
   serviceAccount:
     # Specifies whether a service account should be created
